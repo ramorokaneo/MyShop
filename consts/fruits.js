@@ -1,7 +1,7 @@
 const fruits = [
     {
         id: 1,
-    name: 'Newtown Pippin Apples',
+    name: 'Newtown Pippin Apples fruit',
     price: '23.99',
     like: true,
     img: require('../assets/Apple.png'),
@@ -10,7 +10,7 @@ const fruits = [
 
     {
         id: 2,
-        name: "Black Emperor Grapes",
+        name: "Black Emperor Grapes fruit",
         price: '29.99',
         like: true,
         img: require('../assets/Black-Grapes.png'),
@@ -19,7 +19,7 @@ const fruits = [
 
     {
         id: 3,
-        name: "Gold Finger Bananas",
+        name: "Gold Finger Bananas fruit",
         price: '25.99',
         like: true,
         img: require('../assets/Banana.png'),
@@ -28,7 +28,7 @@ const fruits = [
 
     {
         id: 4,
-        name: "Queen Anne(Prunus maritima) Cherries",
+        name: "Queen Anne(Prunus maritima) Cherries fruit",
         price: '32.99',
         like: true,
         img: require('../assets/Cherry.png'),
