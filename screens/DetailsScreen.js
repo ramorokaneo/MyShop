@@ -4,7 +4,12 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import COLORS from '../consts/colors';
 
 const DetailsScreen = ({ navigation, route }) => {
-  const fruit = route.params;
+  const fruit = {
+    name: 'Apple',
+    price: 1.99,
+    about: 'This is a delicious apple!',
+    img: require('../assets/apple.png'), // Assuming you have 'apple.png' in your assets folder
+  };
 
   return (
     <SafeAreaView
@@ -153,18 +158,5 @@ const styles = StyleSheet.create({
     width: 130,
     height: 50,
     backgroundColor: COLORS.green,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 30,
-  },
-  priceTag: {
-    backgroundColor: COLORS.green,
-    width: 80,
-    height: 40,
-    justifyContent: 'center',
-    borderTopLeftRadius: 25,
-    borderBottomLeftRadius: 25,
-  },
-});
+   
 
-export default DetailsScreen;
