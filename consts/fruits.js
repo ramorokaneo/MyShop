@@ -33,6 +33,7 @@ const fruits = [
         like: true,
         img: require('../assets/Cherry.png'),
         about: 'petite and ruby-red, enchant with their delightful sweetness tinged with a gentle tang.',
-    }
-    
-]
+    },
+];
+ 
+export default fruits;

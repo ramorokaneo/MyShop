@@ -4,7 +4,7 @@ import COLORS from '../consts/colors';
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import fruits from '../consts/fruits';
-const width = Dimensions.get('windows').width / 2 - 30; 
+//const width = Dimensions.get('windows').width / 2 - 30; 
 
 
 const HomeScreen = () => {
