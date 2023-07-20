@@ -1,17 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
-import AppNavigation from './navigation/appNavigation';
+import {createStackNavigator} from '@react-navigation/stack';
+const Stack = createStackNavigator();
+import HomeScreen from './screens/HomeScreen';
+import DetailsScreen from './screens/DetailsScreen';
+import { StatusBar } from 'react-native';
+import COLORS from './consts/colors';
 
-//import {navigationContainer} from '@react-navigation/native';
-//import {} from '@react-navigation/bottom-tabs';
-//import HomeScreen from './screens/HomeScreen';
-//import GameStore from './screens/gameStore';
-
-//const Tab = createBottomTabNavigator();
-
-export default function App() {
+const App = () => {
   return (
-    <AppNavigation />
+    <NavigationContainer>
+      <StatusBar barStyle="dark-content" backgroundColor={COLORS} />
+      <Stack.Navigator screenOptions={{header: () => null}}>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Details" component={DetailsScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
+export default App;
