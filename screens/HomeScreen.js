@@ -124,7 +124,7 @@ const HomeScreen = () => {
         <Icon name="sort" size={30} color={COLORS.white}/>
       </View>
     </View>
-    <CategoriesList />
+    <CategoryList />
     <FlatList
     columnWrapperStyle={{justifyContent: 'space-between'}}
     showsHorizontalScrollIndicator={false}
