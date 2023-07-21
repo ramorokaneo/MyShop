@@ -1,8 +1,13 @@
 const COLORS = {
-    white: '#fff',
+    primary: '#122636',
+    white: '#FFF',
     dark: '#000',
-    red: '#F1F1F1',
-    green: '#00B761',
-};
-
-export default COLORS;
+    light: '#f7f7f7',
+    grey: '#A9A9A9',
+    yellow: '#ffb900',
+    red: 'red',
+    tranparent: 'rgba(0,0,0,0)',
+  };
+  
+  export default COLORS;
+  

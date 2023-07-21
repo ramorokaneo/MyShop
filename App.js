@@ -1,21 +1,22 @@
-import 'react-native-gesture-handler';
 import React from 'react';
+import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-
-const Stack = createStackNavigator();
-import HomeScreen from './screens/DetailsScreen';
-import DetailsSceeen from './screens/DetailsScreen';
+import HomeScreen from './view screens/HomeScreen';
+import DetailsScreen from './view screens/DetailsScreen';
 import {StatusBar} from 'react-native';
 import COLORS from './consts/colors';
+
+const Stack = createStackNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
-      <StatusBar barStyle="dark-content" backgroundColor={COLORS.white} />
-      <Stack.Navigator screenOptions={{header: () => null}}>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Details" component={DetailsSceeen} />
+      {/* Customise status bar */}
+      <StatusBar backgroundColor={COLORS.white} barStyle="dark-content" />
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="HomeScreen" component={HomeScreen} />
+        <Stack.Screen name="DetailsScreen" component={DetailsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
