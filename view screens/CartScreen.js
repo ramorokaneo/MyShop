@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Text, FlatList, StyleSheet, Image } from 'react-native';
+import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
-const CartScreen = () => {
+const CartScreen = ({ navigation }) => {
   const cartItems = [
     {
       id: '1',
@@ -37,6 +37,12 @@ const CartScreen = () => {
 
   const totalAmount = cartItems.reduce((total, item) => total + item.price, 0);
 
+  const handleCheckout = () => {
+    // Implement your checkout logic here, for example:
+    // Redirecting to the payment screen when "Checkout" button is pressed
+    navigation.navigate('PaymentScreen');
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Cart Screen</Text>
@@ -46,6 +52,9 @@ const CartScreen = () => {
         keyExtractor={item => item.id}
       />
       <Text style={styles.totalAmount}>Total Amount: ZAR {totalAmount.toFixed(2)}</Text>
+      <TouchableOpacity style={styles.checkoutButton} onPress={handleCheckout}>
+        <Text style={styles.checkoutButtonText}>Checkout</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -81,6 +90,18 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     marginTop: 24,
+    textAlign: 'center',
+  },
+  checkoutButton: {
+    backgroundColor: '#007BFF',
+    paddingVertical: 12,
+    borderRadius: 8,
+    marginVertical: 16,
+  },
+  checkoutButtonText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#fff',
     textAlign: 'center',
   },
 });

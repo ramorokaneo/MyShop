@@ -7,6 +7,7 @@ import DetailsScreen from './view screens/DetailsScreen';
 import {StatusBar} from 'react-native';
 import COLORS from './consts/colors';
 import CartScreen from './view screens/CartScreen';
+import PaymentScreen from './view screens/PaymentScreen';
 
 const Stack = createStackNavigator();
 
@@ -19,6 +20,7 @@ const MainStackNavigator = () => {
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
         <Stack.Screen name="DetailsScreen" component={DetailsScreen} />
         <Stack.Screen name="Cart" component={CartScreen} />
+        <Stack.Screen name="PaymentScreen" component={PaymentScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
