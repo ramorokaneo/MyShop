@@ -41,7 +41,7 @@ const HomeScreen = ({navigation}) => {
                   backgroundColor:
                     selectedCategoryIndex == index
                       ? COLORS.primary
-                      : COLORS.light,
+                      : COLORS.white,
                 },
               ]}>
               <Icon

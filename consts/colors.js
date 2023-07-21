@@ -6,6 +6,9 @@ const COLORS = {
     grey: '#A9A9A9',
     yellow: '#ffb900',
     red: 'red',
+    stoningtongray: '#CBCCC6',
+    lightgray: '#DEDEDE',
+
     tranparent: 'rgba(0,0,0,0)',
   };
   
