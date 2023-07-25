@@ -14,7 +14,6 @@ const Stack = createStackNavigator();
 const MainStackNavigator = () => {
   return (
     <NavigationContainer>
-      {/* Customise status bar */}
       <StatusBar backgroundColor={COLORS.white} barStyle="dark-content" />
       <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
