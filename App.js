@@ -8,12 +8,20 @@ import {StatusBar} from 'react-native';
 import COLORS from './consts/colors';
 import CartScreen from './view screens/CartScreen';
 import PaymentScreen from './view screens/PaymentScreen';
+import SignupScreen from './view screens/SignupScreen';
+import SigninScreen from './view screens/SigninScreen';
+
+
 
 const Stack = createStackNavigator();
 
 const MainStackNavigator = () => {
   return (
     <NavigationContainer>
+     <Stack.Navigator initialRouteName="Signup">
+        <Stack.Screen name="Signup" component={SignupScreen} />
+        <Stack.Screen name="Signin" component={SigninScreen} />
+      </Stack.Navigator>
       <StatusBar backgroundColor={COLORS.white} barStyle="dark-content" />
       <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
