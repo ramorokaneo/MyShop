@@ -12,9 +12,10 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import COLORS from '../../consts/colors';
+import COLORS from '../consts/colors';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import furnitures from '../../consts/furnitures';
+import furnitures from '../consts/furnitures';
+
 const {width} = Dimensions.get('screen');
 
 const HomeScreen = ({navigation}) => {
@@ -141,7 +142,10 @@ const HomeScreen = ({navigation}) => {
       {/* Header container */}
       <View style={style.header}>
         <Icon name="sort-variant" size={28} color={COLORS.primary} />
+        {/* Cart Icon with Navigation Action */}
+        <TouchableOpacity onPress={() => navigation.navigate('CartScreen')}>
         <Icon name="cart-outline" size={28} color={COLORS.primary} />
+        </TouchableOpacity>
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={style.headerTitle}>Best Furniture For Your Home.</Text>

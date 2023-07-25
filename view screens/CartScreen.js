@@ -38,8 +38,6 @@ const CartScreen = ({ navigation }) => {
   const totalAmount = cartItems.reduce((total, item) => total + item.price, 0);
 
   const handleCheckout = () => {
-    // Implement your checkout logic here, for example:
-    // Redirecting to the payment screen when "Checkout" button is pressed
     navigation.navigate('PaymentScreen');
   };
 
@@ -93,7 +91,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   checkoutButton: {
-    backgroundColor: '#007BFF',
+    backgroundColor: 'black',
     paddingVertical: 12,
     borderRadius: 8,
     marginVertical: 16,
