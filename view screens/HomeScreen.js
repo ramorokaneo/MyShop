@@ -12,65 +12,55 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
+import COLORS from '../../consts/colors';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import COLORS from '../consts/colors';
-import furnitures from '../consts/furnitures';
-import { useNavigation } from '@react-navigation/native';
+import furnitures from '../../consts/furnitures';
+const {width} = Dimensions.get('screen');
 
-const { width } = Dimensions.get('screen');
-
-const HomeScreen = () => {
-  const navigation = useNavigation();
-
+const HomeScreen = ({navigation}) => {
   const categoryItems = [
-    { name: 'Chair', iconName: 'seat-outline' },
-    { name: 'Table', iconName: 'table-furniture' },
-    { name: 'Cupboard', iconName: 'cupboard-outline' },
-    { name: 'Bed', iconName: 'bed-queen-outline' },
+    {name: 'Chair', iconName: 'seat-outline'},
+    {name: 'Table', iconName: 'table-furniture'},
+    {name: 'Cupboard', iconName: 'cupboard-outline'},
+    {name: 'bed', iconName: 'bed-queen-outline'},
   ];
 
   const ListCategories = () => {
     const [selectedCategoryIndex, setSelectedCategoryIndex] = React.useState(0);
-
     return (
-      <View style={styles.categoriesContainer}>
+      <View style={style.categoriesContainer}>
         {categoryItems.map((item, index) => (
           <TouchableOpacity
             key={index}
             activeOpacity={0.8}
-            onPress={() => setSelectedCategoryIndex(index)}
-          >
+            onPress={() => setSelectedCategoryIndex(index)}>
             <View
               style={[
-                styles.categoryItemBtn,
+                style.categoryItemBtn,
                 {
                   backgroundColor:
-                    selectedCategoryIndex === index
+                    selectedCategoryIndex == index
                       ? COLORS.primary
-                      : COLORS.white,
+                      : COLORS.light,
                 },
-              ]}
-            >
+              ]}>
               <Icon
                 name={item.iconName}
                 size={20}
                 color={
-                  selectedCategoryIndex === index
-                    ? COLORS.white
-                    : COLORS.primary
+                  selectedCategoryIndex == index ? COLORS.white : COLORS.primary
                 }
               />
               <Text
                 style={[
-                  styles.categoryText,
+                  style.categoryText,
                   {
                     color:
-                      selectedCategoryIndex === index
+                      selectedCategoryIndex == index
                         ? COLORS.white
                         : COLORS.primary,
                   },
-                ]}
-              >
+                ]}>
                 {item.name}
               </Text>
             </View>
@@ -80,13 +70,12 @@ const HomeScreen = () => {
     );
   };
 
-  const Card = ({ furniture }) => {
+  const Card = ({furniture}) => {
     return (
       <Pressable
-        onPress={() => navigation.navigate('DetailsScreen', furniture)}
-      >
-        <View style={styles.card}>
-          <View style={styles.iconContainer}>
+        onPress={() => navigation.navigate('DetailsScreen', furniture)}>
+        <View style={style.card}>
+          <View style={style.iconContainer}>
             <Icon
               name="heart"
               color={furniture.liked ? COLORS.red : COLORS.primary}
@@ -94,21 +83,20 @@ const HomeScreen = () => {
           </View>
           <Image
             source={furniture.image}
-            style={{ height: 120, width: '100%', borderRadius: 10 }}
+            style={{height: 120, width: '100%', borderRadius: 10}}
           />
 
-          <Text style={styles.cardName}>{furniture.name}</Text>
+          <Text style={style.cardName}>{furniture.name}</Text>
           <View
             style={{
               marginTop: 5,
               flexDirection: 'row',
               justifyContent: 'space-between',
-            }}
-          >
-            <Text style={styles.price}>{furniture.price}</Text>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            }}>
+            <Text style={style.price}>{furniture.price}</Text>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Icon name="star" color={COLORS.yellow} size={18} />
-              <Text style={styles.rating}>4.3</Text>
+              <Text style={style.rating}>4.3</Text>
             </View>
           </View>
         </View>
@@ -116,10 +104,10 @@ const HomeScreen = () => {
     );
   };
 
-  const PopularItemCard = ({ furniture }) => {
+  const PopularItemCard = ({furniture}) => {
     return (
-      <View style={styles.popularItemCard}>
-        <View style={styles.iconContainer}>
+      <View style={style.popularItemCard}>
+        <View style={style.iconContainer}>
           <Icon
             name="heart"
             color={furniture.liked ? COLORS.red : COLORS.primary}
@@ -135,31 +123,28 @@ const HomeScreen = () => {
             marginRight: 10,
           }}
         />
-        <View style={{ paddingVertical: 15, justifyContent: 'center' }}>
-          <Text style={styles.cardName}>{furniture.name}</Text>
-          <View style={{ flexDirection: 'row', marginTop: 10 }}>
-            <Text style={styles.price}>{furniture.price}</Text>
-            <View style={{ flexDirection: 'row', marginLeft: 10 }}>
+        <View style={{paddingVertical: 15, justifyContent: 'center'}}>
+          <Text style={style.cardName}>{furniture.name}</Text>
+          <View style={{flexDirection: 'row', marginTop: 10}}>
+            <Text style={style.price}>{furniture.price}</Text>
+            <View style={{flexDirection: 'row', marginLeft: 10}}>
               <Icon name="star" color={COLORS.yellow} size={18} />
-              <Text style={styles.rating}>4.3</Text>
+              <Text style={style.rating}>4.3</Text>
             </View>
           </View>
         </View>
       </View>
     );
   };
-
   return (
-    <SafeAreaView style={{ backgroundColor: COLORS.white, flex: 1 }}>
+    <SafeAreaView style={{backgroundColor: COLORS.white, flex: 1}}>
       {/* Header container */}
-      <View style={styles.header}>
+      <View style={style.header}>
         <Icon name="sort-variant" size={28} color={COLORS.primary} />
-        <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
-          <Icon name="cart-outline" size={28} color={COLORS.primary} />
-        </TouchableOpacity>
+        <Icon name="cart-outline" size={28} color={COLORS.primary} />
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Text style={styles.headerTitle}>Best Furniture For Your Home.</Text>
+        <Text style={style.headerTitle}>Best Furniture For Your Home.</Text>
 
         {/* Input and sort button container */}
         <View
@@ -167,43 +152,47 @@ const HomeScreen = () => {
             flexDirection: 'row',
             justifyContent: 'space-between',
             padding: 20,
-          }}
-        >
-          <View style={styles.searchInputContainer}>
+          }}>
+          <View style={style.searchInputContainer}>
             <Icon name="magnify" color={COLORS.grey} size={25} />
             <TextInput placeholder="Search" />
           </View>
-          <View style={styles.sortBtn}>
+
+          <View style={style.sortBtn}>
             <Icon name="tune" color={COLORS.white} size={25} />
           </View>
         </View>
 
-        <Text style={styles.title}>Categories</Text>
+        <Text style={style.title}>Categories</Text>
+        {/* Render categories */}
         <ListCategories />
 
-        <Text style={styles.title}>Top Furniture</Text>
+        {/* Render To Furnitures */}
+        <Text style={style.title}>Top Furniture</Text>
+
         <FlatList
           showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{ paddingLeft: 20 }}
+          contentContainerStyle={{paddingLeft: 20}}
           data={furnitures}
           horizontal
-          renderItem={({ item }) => <Card furniture={item} />}
+          renderItem={({item}) => <Card furniture={item} />}
         />
 
-        <Text style={styles.title}>Popular</Text>
+        {/* Render To Popular */}
+        <Text style={style.title}>Popular</Text>
         <FlatList
           horizontal
           showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{ paddingLeft: 20 }}
+          contentContainerStyle={{paddingLeft: 20}}
           data={furnitures}
-          renderItem={({ item }) => <PopularItemCard furniture={item} />}
+          renderItem={({item}) => <PopularItemCard furniture={item} />}
         />
       </ScrollView>
     </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({
+const style = StyleSheet.create({
   header: {
     paddingVertical: 20,
     flexDirection: 'row',
@@ -235,6 +224,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginLeft: 10,
   },
+
   categoriesContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -270,9 +260,13 @@ const styles = StyleSheet.create({
     color: COLORS.primary,
     fontWeight: 'bold',
   },
-  price: { fontWeight: 'bold', color: COLORS.primary, fontSize: 12 },
-  rating: { fontWeight: 'bold', color: COLORS.primary, fontSize: 12 },
-  title: { fontSize: 18, fontWeight: 'bold', paddingHorizontal: 20 },
+  price: {fontWeight: 'bold', color: COLORS.primary, fontSize: 12},
+  rating: {
+    fontWeight: 'bold',
+    color: COLORS.primary,
+    fontSize: 12,
+  },
+  title: {fontSize: 18, fontWeight: 'bold', paddingHorizontal: 20},
   iconContainer: {
     height: 25,
     width: 25,
@@ -296,5 +290,4 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
 });
-
 export default HomeScreen;
