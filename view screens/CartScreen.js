@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
-const CartScreen = ({ navigation }) => {
-  const cartItems = [
+const CartScreen = () => {
+  const [cartItems, setCartItems] = useState([
     {
       id: '1',
       name: 'Comfortable Sofa',
@@ -24,7 +24,7 @@ const CartScreen = ({ navigation }) => {
       price: 3584.57,
       image: require('../assets/furniture4.jpg'),
     },
-  ];
+  ]);
 
   const renderItem = ({ item }) => (
     <View style={styles.item}>
@@ -32,14 +32,23 @@ const CartScreen = ({ navigation }) => {
       <Text style={styles.itemQuantity}>Quantity: {item.quantity}</Text>
       <Text style={styles.itemPrice}>Price: ZAR {item.price.toFixed(2)}</Text>
       <Image source={item.image} style={{ height: 80, width: 100 }} />
+      <TouchableOpacity style={styles.removeButton} onPress={() => handleRemoveItem(item.id)}>
+        <Text style={styles.removeButtonText}>Remove</Text>
+      </TouchableOpacity>
     </View>
   );
 
-  const totalAmount = cartItems.reduce((total, item) => total + item.price, 0);
-
+  
   const handleCheckout = () => {
     navigation.navigate('PaymentScreen');
   };
+
+  const handleRemoveItem = (itemId) => {
+    const updatedCartItems = cartItems.filter((item) => item.id !== itemId);
+    setCartItems(updatedCartItems);
+  };
+
+  const totalAmount = cartItems.reduce((total, item) => total + item.price, 0);
 
   return (
     <View style={styles.container}>
