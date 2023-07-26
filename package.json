@@ -9,6 +9,8 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@paypal/react-paypal-js": "^8.1.0",
+    "@paystack-oss/dev-cli": "^1.0.0-nightly.0",
     "@react-native-async-storage/async-storage": "^1.19.1",
     "@react-native-firebase/app": "^18.3.0",
     "@react-native-firebase/auth": "^18.3.0",
@@ -20,16 +22,20 @@
     "@stripe/stripe-react-native": "^0.29.0",
     "axios": "^1.4.0",
     "body-parser": "^1.20.2",
+    "bootstrap": "^5.0.1",
     "cors": "^2.8.5",
     "expo": "~48.0.18",
     "expo-status-bar": "~1.4.4",
     "express": "^4.18.2",
     "firebase": "^10.1.0",
+    "link": "^1.5.1",
     "react": "18.2.0",
-    "react-native": "0.71.8",
+    "react-native": "^0.71.8",
     "react-native-apple-pay": "^0.0.0",
     "react-native-camera": "^4.2.1",
+    "react-native-google-pay": "^2.1.0",
     "react-native-heroicons": "^3.2.0",
+    "react-native-in-app-utils": "^6.1.0",
     "react-native-payments": "^0.8.4",
     "react-native-paypal-sdk": "^1.0.0",
     "react-native-paystack-webview": "^4.0.3",
@@ -40,7 +46,11 @@
     "react-native-star-rating": "^1.1.0",
     "react-native-stripe-sdk": "^0.0.0",
     "react-native-vector-icons": "^10.0.0",
-    "react-native-webview": "^13.3.0"
+    "react-native-webview": "^13.3.0",
+    "react-paystack": "^4.0.3",
+    "react-redux": "^8.1.1",
+    "redux": "^4.2.1",
+    "vicreative-react-native-paystack-webview": "^4.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

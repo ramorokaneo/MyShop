@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const CartScreen = () => {
+  const navigation = useNavigation();
+
   const [cartItems, setCartItems] = useState([
     {
       id: '1',
@@ -38,7 +41,6 @@ const CartScreen = () => {
     </View>
   );
 
-  
   const handleCheckout = () => {
     navigation.navigate('PaymentScreen');
   };
