@@ -11,11 +11,19 @@ const Userprofilescreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.headerText}>User Profile</Text>
-      <View style={styles.profileInfo}>
-        <Text>Name: {user.name}</Text>
-        <Text>Email: {user.email}</Text>
-        {/* Add other user information here */}
+      <View style={styles.sidebar}>
+        {/* Content for the sidebar */}
+        <Text style={styles.sidebarText}>Profile Picture</Text>
+        {/* Add other sidebar content here */}
+      </View>
+      <View style={styles.content}>
+        {/* Main content */}
+        <Text style={styles.headerText}>User Profile</Text>
+        <View style={styles.profileInfo}>
+          <Text>Name: {user.name}</Text>
+          <Text>Email: {user.email}</Text>
+          {/* Add other user information here */}
+        </View>
       </View>
     </View>
   );
@@ -24,6 +32,23 @@ const Userprofilescreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'row', // Arrange the sidebar and content side by side
+    alignItems: 'stretch',
+  },
+  sidebar: {
+    flex: 1,
+    backgroundColor: '#f0f0f0',
+    padding: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  sidebarText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  content: {
+    flex: 3, // Adjust this value to control the width of the main content area
+    padding: 20,
     alignItems: 'center',
     justifyContent: 'center',
   },
