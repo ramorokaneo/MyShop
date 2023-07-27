@@ -8,6 +8,8 @@ import CartScreen from './view screens/CartScreen';
 import PaymentScreen from './view screens/PaymentScreen';
 import ProfileScreen from './Profile/ProfileScreen';
 import RegistrationScreen from './Profile/RegistrationScreen';
+import LoginScreen from './Profile/LoginScreen';
+import Userprofilescreen from './Profile/Component/Userprofilescreen';
 
 
 const Stack = createStackNavigator();
@@ -24,6 +26,8 @@ const App = () => {
         <Stack.Screen name="PaymentScreen" component={PaymentScreen} />
         <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
         <Stack.Screen name='RegistrationScreen' component={RegistrationScreen} />
+        <Stack.Screen name='LoginScreen' component={LoginScreen} />
+        <Stack.Screen name='Userprofilescreen' component={Userprofilescreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 const ProfileScreen = ({ navigation }) => {
-  const handleLogin = () => {
+  const handleLoginPress = () => {
     // Navigate to the login screen when the login button is clicked
     navigation.navigate('LoginScreen');
   };
@@ -15,13 +15,12 @@ const ProfileScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}>Profile Dashboard</Text>
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+      <TouchableOpacity style={styles.button} onPress={handleLoginPress}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={handleSignup}>
         <Text style={styles.buttonText}>Signup</Text>
       </TouchableOpacity>
-      {/* Add more dashboard components as needed */}
     </View>
   );
 };
@@ -38,7 +37,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   button: {
-    backgroundColor: 'black', // Change the background color to black
+    backgroundColor: 'black', 
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 8,
