@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   },
   sidebar: {
     flex: 1,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: 'black', // Set the background color to black
     padding: 20,
     alignItems: 'center',
     justifyContent: 'center',
@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
   sidebarText: {
     fontSize: 18,
     fontWeight: 'bold',
+    color: 'white', // Set the text color to white for visibility on the black background
   },
   content: {
     flex: 3, // Adjust this value to control the width of the main content area
