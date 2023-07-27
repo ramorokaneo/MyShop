@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-const Userprofilescreen = () => {
-  // Replace these with the actual user information
+const Userprofilescreen = ({navigation}) => {
   const user = {
+    profilenumber: '123654',
     name: 'John Doe',
     email: 'john.doe@example.com',
-    // Add other user information as needed
+
   };
 
   return (
@@ -14,6 +14,11 @@ const Userprofilescreen = () => {
       <View style={styles.sidebar}>
         {/* Content for the sidebar */}
         <Text style={styles.sidebarText}>Profile Picture</Text>
+        <Text style={styles.sidebarText}>Payment History</Text>
+        <Text style={styles.sidebar}>Settings</Text>
+        <TouchableOpacity style={styles.button} onPress={handleLogoutPress}>
+          <Text style={styles.buttonText}>Log Out</Text>
+          </TouchableOpacity>
         {/* Add other sidebar content here */}
       </View>
       <View style={styles.content}>
