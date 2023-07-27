@@ -142,11 +142,19 @@ const HomeScreen = ({navigation}) => {
       {/* Header container */}
       <View style={style.header}>
         <Icon name="sort-variant" size={28} color={COLORS.primary} />
+        
+         {/* Profile Icon with Navigation Action */}
+         <TouchableOpacity onPress={() => navigation.navigate('ProfileScreen')}>
+          <Icon name="account-circle-outline" size={28} color={COLORS.primary} />
+        </TouchableOpacity>
+
+
         {/* Cart Icon with Navigation Action */}
         <TouchableOpacity onPress={() => navigation.navigate('CartScreen')}>
         <Icon name="cart-outline" size={28} color={COLORS.primary} />
         </TouchableOpacity>
       </View>
+      
       <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={style.headerTitle}>Best Furniture For Your Home.</Text>
 

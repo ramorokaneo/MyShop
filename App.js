@@ -6,24 +6,15 @@ import HomeScreen from './view screens/HomeScreen';
 import DetailsScreen from './view screens/DetailsScreen';
 import CartScreen from './view screens/CartScreen';
 import PaymentScreen from './view screens/PaymentScreen';
-import axios from 'axios';
+import ProfileScreen from './Profile/ProfileScreen';
+import RegistrationScreen from './Profile/RegistrationScreen';
+
 
 const Stack = createStackNavigator();
 
 const App = () => {
   const [message, setMessage] = useState('');
-
-  useEffect(() => {
-    axios
-      .get('http://localhost:5000/api/sample')
-      .then((response) => {
-        setMessage(response.data.message);
-      })
-      .catch((error) => {
-        console.error('Error fetching data:', error);
-      });
-  }, []);
-
+  
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="HomeScreen" screenOptions={{ headerShown: false }}>
@@ -31,6 +22,8 @@ const App = () => {
         <Stack.Screen name="DetailsScreen" component={DetailsScreen} />
         <Stack.Screen name="CartScreen" component={CartScreen} />
         <Stack.Screen name="PaymentScreen" component={PaymentScreen} />
+        <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+        <Stack.Screen name='RegistrationScreen' component={RegistrationScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
