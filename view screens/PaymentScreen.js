@@ -14,10 +14,10 @@ import { Paystack } from "react-native-paystack-webview";
 export default function App() {
   const [pay, setPay] = useState(false);
   const [billingDetail, setBillingDetail] = useState({
-    billingName: "Nicole Sabetian",
-    billingEmail: "nic@example.com",
-    billingMobile: "0630808051",
-    amount: "ZAR 236852.96",
+    billingName: "",
+    billingEmail: "",
+    billingMobile: "",
+    amount: "236852.96",
   });
 
   const handleOnchange = (text, input) => {
