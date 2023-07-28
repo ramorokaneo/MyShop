@@ -1,19 +1,71 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { useNavigation } from '@react-navigation/native';
+import MyCartScreen from './MyCartScreen';
+import profilePicture from '../../assets/pexels-nichole-sebastian-3220360.jpg';
 
-const Userprofilescreen = ({navigation}) => {
+const Userprofilescreen = () => {
+  // Replace these with the actual user information
   const user = {
-    name: 'John Doe',
-    email: 'john.doe@example.com',
-    // Add other user information as needed
+    name: 'Nicole Sebatian',
+    dateOfBirth: '1990-01-01',
+    gender: 'Female',
+    residentialAddress: '123 Main St',
+    postalAddress: '456 Park Ave',
+    zipCode: '2021',
+    city: 'Johannesburg',
+    country: 'South Africa',
+    phoneNumber: '011-123-4567',
+    alternativeNumber: '076-987-6543',
+    email: 'nic@example.com',
+  };
+
+  const navigation = useNavigation();
+
+  const handleLogout = () => {
+    navigation.navigate('HomeScreen');
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.sidebar}>
-        {/* Content for the sidebar */}
-        <Text style={styles.sidebarText}>Profile Picture</Text>
-        {/* Add other sidebar content here */}
+        {/* Add the profile picture */}
+        <View style={styles.profilePictureContainer}>
+          <Image source={profilePicture} style={styles.profilePicture} />
+          {/* Edit Profile button */}
+          <TouchableOpacity style={styles.editProfileButton}>
+            <Icon name="pencil" size={16} color="white" />
+            <Text style={styles.editProfileButtonText}>Edit Profile</Text>
+          </TouchableOpacity>
+        </View>
+
+        {/* Sidebar items */}
+        <View style={styles.sidebarItemsContainer}>
+          <View style={styles.sidebarItem}>
+            <TouchableOpacity style={styles.sidebarButton}>
+              <Text style={styles.sidebarButtonText}>Settings</Text>
+            </TouchableOpacity>
+          </View>
+
+          {/* My Cart button */}
+          <View style={styles.sidebarItem}>
+            <TouchableOpacity style={styles.sidebarButton}>
+              <Text style={styles.sidebarButtonText}>My Cart</Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.sidebarItem}>
+            <TouchableOpacity style={styles.sidebarButton}>
+              <Text style={styles.sidebarButtonText}>Payments</Text>
+            </TouchableOpacity>
+          </View>
+
+          {/* Log Out button */}
+          <TouchableOpacity style={[styles.sidebarItem, styles.logoutButton]} onPress={handleLogout}>
+            <Text style={styles.sidebarText}>Log Out</Text>
+          </TouchableOpacity>
+        </View>
       </View>
       <View style={styles.content}>
         {/* Main content */}
@@ -39,7 +91,7 @@ const Userprofilescreen = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: 'row', // Arrange the sidebar and content side by side
     alignItems: 'stretch',
   },
   sidebar: {
@@ -50,7 +102,7 @@ const styles = StyleSheet.create({
   },
   sidebarItemsContainer: {
     flex: 1,
-    justifyContent: 'center', 
+    justifyContent: 'flex-end',
   },
   sidebarItem: {
     marginBottom: 10,
@@ -93,7 +145,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 5,
-    backgroundColor: 'black', 
+    backgroundColor: 'black',
     padding: 5,
     borderRadius: 8,
   },
@@ -103,15 +155,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginLeft: 5,
   },
-  pencilIcon: {
-    width: 16,
-    height: 16,
-    tintColor: 'white',
-  },
   sidebarButton: {
     padding: 10,
     borderRadius: 8,
-    backgroundColor: 'black', 
+    backgroundColor: 'black',
   },
   sidebarButtonText: {
     fontSize: 18,

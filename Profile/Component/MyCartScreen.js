@@ -1,7 +1,8 @@
+// MyCartScreen.js
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-const MyCartScreen = () => {
+const MyCartScreen = ({ onClose }) => {
   // Replace this with the actual cart and liked items data
   const cartItems = [];
   const purchasedItems = [];
@@ -9,6 +10,9 @@ const MyCartScreen = () => {
 
   return (
     <View style={styles.container}>
+      <TouchableOpacity style={styles.closeButton} onPress={onClose}>
+        <Text style={styles.closeButtonText}>Close</Text>
+      </TouchableOpacity>
       <Text style={styles.headerText}>My Cart</Text>
       <View style={styles.cartSection}>
         <Text style={styles.sectionHeaderText}>Cart Items:</Text>
@@ -50,6 +54,20 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
+  },
+  closeButton: {
+    position: 'absolute',
+    top: 20,
+    right: 20,
+    padding: 10,
+    borderRadius: 8,
+    backgroundColor: 'black',
+    zIndex: 1,
+  },
+  closeButtonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 

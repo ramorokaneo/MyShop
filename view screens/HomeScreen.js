@@ -1,168 +1,305 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome'; // Replace 'FontAwesome' with the correct icon library for your desired pencil icon
+import {
+  SafeAreaView,
+  View,
+  Text,
+  TextInput,
+  FlatList,
+  Dimensions,
+  StyleSheet,
+  Image,
+  Pressable,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
+import COLORS from '../consts/colors';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import furnitures from '../consts/furnitures';
 
-// Import your image file
-import profilePicture from '../../MyShop/assets/pexels-nichole-sebastian-3220360.jpg'; // Update the path accordingly
+const {width} = Dimensions.get('screen');
 
-const Userprofilescreen = () => {
-  // Replace these with the actual user information
-  const user = {
-    name: 'Nicole Sebatian',
-    dateOfBirth: '1990-01-01',
-    gender: 'Female',
-    residentialAddress: '123 Main St',
-    postalAddress: '456 Park Ave',
-    zipCode: '2021',
-    city: 'Johannesburg',
-    country: 'South Africa',
-    phoneNumber: '011-123-4567',
-    alternativeNumber: '076-987-6543',
-    email: 'nic@example.com',
+const HomeScreen = ({navigation}) => {
+  const categoryItems = [
+    {name: 'Chair', iconName: 'seat-outline'},
+    {name: 'Table', iconName: 'table-furniture'},
+    {name: 'Cupboard', iconName: 'cupboard-outline'},
+    {name: 'bed', iconName: 'bed-queen-outline'},
+  ];
+
+  const ListCategories = () => {
+    const [selectedCategoryIndex, setSelectedCategoryIndex] = React.useState(0);
+    return (
+      <View style={style.categoriesContainer}>
+        {categoryItems.map((item, index) => (
+          <TouchableOpacity
+            key={index}
+            activeOpacity={0.8}
+            onPress={() => setSelectedCategoryIndex(index)}>
+            <View
+              style={[
+                style.categoryItemBtn,
+                {
+                  backgroundColor:
+                    selectedCategoryIndex == index
+                      ? COLORS.primary
+                      : COLORS.light,
+                },
+              ]}>
+              <Icon
+                name={item.iconName}
+                size={20}
+                color={
+                  selectedCategoryIndex == index ? COLORS.white : COLORS.primary
+                }
+              />
+              <Text
+                style={[
+                  style.categoryText,
+                  {
+                    color:
+                      selectedCategoryIndex == index
+                        ? COLORS.white
+                        : COLORS.primary,
+                  },
+                ]}>
+                {item.name}
+              </Text>
+            </View>
+          </TouchableOpacity>
+        ))}
+      </View>
+    );
   };
 
+  const Card = ({furniture}) => {
+    return (
+      <Pressable
+        onPress={() => navigation.navigate('DetailsScreen', furniture)}>
+        <View style={style.card}>
+          <View style={style.iconContainer}>
+            <Icon
+              name="heart"
+              color={furniture.liked ? COLORS.red : COLORS.primary}
+            />
+          </View>
+          <Image
+            source={furniture.image}
+            style={{height: 120, width: '100%', borderRadius: 10}}
+          />
+
+          <Text style={style.cardName}>{furniture.name}</Text>
+          <View
+            style={{
+              marginTop: 5,
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+            }}>
+            <Text style={style.price}>{furniture.price}</Text>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <Icon name="star" color={COLORS.yellow} size={18} />
+              <Text style={style.rating}>4.3</Text>
+            </View>
+          </View>
+        </View>
+      </Pressable>
+    );
+  };
+
+  const PopularItemCard = ({furniture}) => {
+    return (
+      <View style={style.popularItemCard}>
+        <View style={style.iconContainer}>
+          <Icon
+            name="heart"
+            color={furniture.liked ? COLORS.red : COLORS.primary}
+          />
+        </View>
+        <Image
+          source={furniture.image}
+          style={{
+            width: 100,
+            height: '100%',
+            borderTopLeftRadius: 10,
+            borderBottomLeftRadius: 10,
+            marginRight: 10,
+          }}
+        />
+        <View style={{paddingVertical: 15, justifyContent: 'center'}}>
+          <Text style={style.cardName}>{furniture.name}</Text>
+          <View style={{flexDirection: 'row', marginTop: 10}}>
+            <Text style={style.price}>{furniture.price}</Text>
+            <View style={{flexDirection: 'row', marginLeft: 10}}>
+              <Icon name="star" color={COLORS.yellow} size={18} />
+              <Text style={style.rating}>4.3</Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    );
+  };
   return (
-    <View style={styles.container}>
-      <View style={styles.sidebar}>
-        {/* Add the profile picture */}
-        <View style={styles.profilePictureContainer}>
-          <Image source={profilePicture} style={styles.profilePicture} />
-          {/* Edit Profile button */}
-          <TouchableOpacity style={styles.editProfileButton}>
-            <Icon name="pencil" size={16} color="white" />
-            <Text style={styles.editProfileButtonText}>Edit Profile</Text>
-          </TouchableOpacity>
-        </View>
+    <SafeAreaView style={{backgroundColor: COLORS.white, flex: 1}}>
+      {/* Header container */}
+      <View style={style.header}>
+        <Icon name="sort-variant" size={28} color={COLORS.primary} />
+        
+         {/* Profile Icon with Navigation Action */}
+         <TouchableOpacity onPress={() => navigation.navigate('ProfileScreen')}>
+          <Icon name="account-circle-outline" size={28} color={COLORS.primary} />
+        </TouchableOpacity>
 
-         {/* Sidebar items */}
-         <View style={styles.sidebarItemsContainer}>
-          <View style={styles.sidebarItem}>
-            <TouchableOpacity style={styles.sidebarButton}>
-              <Text style={styles.sidebarButtonText}>Settings</Text>
-            </TouchableOpacity>
-          </View>
 
-          <View style={styles.sidebarItem}>
-            <TouchableOpacity style={styles.sidebarButton}>
-              <Text style={styles.sidebarButtonText}>My Cart</Text>
-            </TouchableOpacity>
-          </View>
-
-          <View style={styles.sidebarItem}>
-            <TouchableOpacity style={styles.sidebarButton}>
-              <Text style={styles.sidebarButtonText}>Payments</Text>
-            </TouchableOpacity>
-          </View>
-
-          {/* Log Out button */}
-          <TouchableOpacity style={[styles.sidebarItem, styles.logoutButton]}>
-            <Text style={styles.sidebarText}>Log Out</Text>
-          </TouchableOpacity>
-        </View>
+        {/* Cart Icon with Navigation Action */}
+        <TouchableOpacity onPress={() => navigation.navigate('CartScreen')}>
+        <Icon name="cart-outline" size={28} color={COLORS.primary} />
+        </TouchableOpacity>
       </View>
-      <View style={styles.content}>
-        {/* Main content */}
-        <Text style={styles.headerText}>User Profile</Text>
-        <View style={styles.profileInfo}>
-          <Text>Name: {user.name}</Text>
-          <Text>Date of Birth: {user.dateOfBirth}</Text>
-          <Text>Gender: {user.gender}</Text>
-          <Text>Residential Address: {user.residentialAddress}</Text>
-          <Text>Postal Address: {user.postalAddress}</Text>
-          <Text>Zip Code: {user.zipCode}</Text>
-          <Text>City: {user.city}</Text>
-          <Text>Country: {user.country}</Text>
-          <Text>Phone Number: {user.phoneNumber}</Text>
-          <Text>Alternative Number: {user.alternativeNumber}</Text>
-          <Text>Email: {user.email}</Text>
+      
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Text style={style.headerTitle}>Best Furniture For Your Home.</Text>
+
+        {/* Input and sort button container */}
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            padding: 20,
+          }}>
+          <View style={style.searchInputContainer}>
+            <Icon name="magnify" color={COLORS.grey} size={25} />
+            <TextInput placeholder="Search" />
+          </View>
+
+          <View style={style.sortBtn}>
+            <Icon name="tune" color={COLORS.white} size={25} />
+          </View>
         </View>
-      </View>
-    </View>
+
+        <Text style={style.title}>Categories</Text>
+        {/* Render categories */}
+        <ListCategories />
+
+        {/* Render To Furnitures */}
+        <Text style={style.title}>Top Furniture</Text>
+
+        <FlatList
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{paddingLeft: 20}}
+          data={furnitures}
+          horizontal
+          renderItem={({item}) => <Card furniture={item} />}
+        />
+
+        {/* Render To Popular */}
+        <Text style={style.title}>Popular</Text>
+        <FlatList
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{paddingLeft: 20}}
+          data={furnitures}
+          renderItem={({item}) => <PopularItemCard furniture={item} />}
+        />
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'row', // Arrange the sidebar and content side by side
-    alignItems: 'stretch',
+const style = StyleSheet.create({
+  header: {
+    paddingVertical: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
   },
-  sidebar: {
-    flex: 1,
-    backgroundColor: 'black',
-    padding: 20,
-    alignItems: 'center',
-  },
-  sidebarItemsContainer: {
-    flex: 1,
-    justifyContent: 'flex-end', 
-  },
-  sidebarItem: {
-    marginBottom: 10,
-  },
-  sidebarText: {
-    fontSize: 18,
+  headerTitle: {
+    fontSize: 23,
     fontWeight: 'bold',
-    color: 'white',
+    width: '55%',
+    lineHeight: 30,
+    paddingHorizontal: 20,
   },
-  logoutButton: {
-    backgroundColor: 'black', 
-  },
-  content: {
-    flex: 3,
-    padding: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  headerText: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  profileInfo: {
-    borderWidth: 1,
-    borderColor: 'gray',
-    padding: 10,
-    borderRadius: 8,
-  },
-  profilePictureContainer: {
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  profilePicture: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-  },
-  editProfileButton: {
+  searchInputContainer: {
+    height: 50,
+    backgroundColor: COLORS.light,
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 5,
-    backgroundColor: 'black', 
-    padding: 5,
-    borderRadius: 8,
+    paddingHorizontal: 20,
+    borderRadius: 12,
   },
-  editProfileButtonText: {
-    color: 'white',
-    fontSize: 16,
+  sortBtn: {
+    backgroundColor: COLORS.primary,
+    height: 50,
+    width: 50,
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 10,
+  },
+
+  categoriesContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 20,
+  },
+  categoryItemBtn: {
+    flexDirection: 'row',
+    backgroundColor: COLORS.light,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    borderRadius: 7,
+    alignItems: 'center',
+  },
+  categoryText: {
+    fontSize: 13,
     fontWeight: 'bold',
+    color: COLORS.primary,
     marginLeft: 5,
   },
-  pencilIcon: {
-    width: 16,
-    height: 16,
-    tintColor: 'white', 
-  },
-  sidebarButton: {
+  card: {
+    height: 190,
+    backgroundColor: COLORS.white,
+    elevation: 10,
+    width: width / 2.5,
+    marginRight: 20,
     padding: 10,
-    borderRadius: 8,
-    backgroundColor: "black",
+    marginVertical: 20,
+    borderRadius: 10,
   },
-  sidebarButtonText: {
-    fontSize: 18,
+  cardName: {
+    marginTop: 10,
+    fontSize: 12,
+    color: COLORS.primary,
     fontWeight: 'bold',
-    color: 'white',
+  },
+  price: {fontWeight: 'bold', color: COLORS.primary, fontSize: 12},
+  rating: {
+    fontWeight: 'bold',
+    color: COLORS.primary,
+    fontSize: 12,
+  },
+  title: {fontSize: 18, fontWeight: 'bold', paddingHorizontal: 20},
+  iconContainer: {
+    height: 25,
+    width: 25,
+    backgroundColor: COLORS.white,
+    position: 'absolute',
+    elevation: 2,
+    right: 15,
+    top: 15,
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  popularItemCard: {
+    height: 90,
+    width: width - 100,
+    backgroundColor: COLORS.white,
+    elevation: 10,
+    marginVertical: 20,
+    marginRight: 20,
+    borderRadius: 10,
+    flexDirection: 'row',
   },
 });
-
-export default Userprofilescreen;
+export default HomeScreen;
